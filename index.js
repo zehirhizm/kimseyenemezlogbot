@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, Collection, Events } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const keepAlive = require('./server'); // Keep-alive sunucusu
 
 // Bot client oluştur - TÜM gerekli intent'lerle
 const client = new Client({
@@ -132,6 +133,9 @@ client.on('error', (error) => {
 process.on('unhandledRejection', (error) => {
     console.error('❌ İşlenmeyen hata:', error);
 });
+
+// Keep-alive sunucusunu başlat (Replit için)
+keepAlive();
 
 // Bot'u başlat
 client.login(process.env.DISCORD_TOKEN)
